@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Create test</title>
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Online_Assessment/TestScript.js"></script>
+</head>
+<body>
+    <form id="Test_form" name="Test_form">
+        <label>Enter test name</label><br />
+        <input type="text" id="test_name" name="test_name" /><br />
+        <br />
+        <label>Start date</label><br />
+        <input type="date" id="startdate" name="startdate" />
+        <br /><br />
+        <label>End date</label><br />
+        <input type="date" id="enddate" name="enddate" />
+        <br /><br />
+        <label>Duration</label><br />
+        <input type="text"  id="duration" name="duration" required pattern="[0-9]{2}:[0-9]{2}" value="00:00" title="Write a duration in the format hh:mm">
+        <button type="button" onclick="create_test()">Create_test</button>
+    </form>
+</body>
+</html>

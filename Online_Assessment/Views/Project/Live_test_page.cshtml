@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Test</title><link href="~/App_Start/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/handlebars.js"></script>
+    <script src="~/Scripts/Online_Assessment/Live_script.js"></script>
+    
+    <script id="template" type="text/x-handlebars-template">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <input type="hidden" id="Question_id" name="Question_id" value="{{Question.Question_Id}}" />
+                    <label id="Question_no"></label>
+                    <label id="Questions">{{Question.Questions}}</label>
+                    <br />
+                    <br />
+                    {{#each Options}}
+                    <input type="radio" id="option" name="options" value="{{Option_Id}}" />
+                    <label id="answer">{{Options}}</label>
+                    <br />
+                    {{/each}}
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <button id="PreviousButton" type="button" onclick="prevclick();" class="btn btn-secondary rounded w-25 h-100">Previous</button>
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary type="button" onclick="save_current_answers()" rounded w-25 h-100">Submit</button>
+                </div>
+                <div class="col-4">
+                    <button id="NextButton" onclick="nextclick();" type="button" class="btn btn-success rounded w-25 h-100">Next</button>
+                </div>
+            </div>
+        </div>
+    </script>
+</head>
+<body>
+    <input type="hidden" id="test_id" name="test_id" value="@ViewData["Test_Id"]" />
+    <input type="hidden" id="user_id" name="user_id" value="@Session["user_id"]" />
+    <div class="row container mt-2">
+                <div class="col-10"></div>
+                <div class="timer col-2">
+                    <label><b>Time Left:</b></label>
+                    <label id="Timer" class="btn btn-primary"></label>
+                </div>
+            </div>
+    <div id="test_body"></div>
+    <div id="result_body" style="display:none">
+        <div class="row">
+            <div class="col-5"></div>
+            <div class="col-1">
+                <p class="btn btn-danger">Test ended</p>
+                <h4>Thank you for participating!</h4>
+            </div>
+            <div class="col-5"></div>
+        </div>
+    </div>
+</body>
+</html>

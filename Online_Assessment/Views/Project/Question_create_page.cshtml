@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Question</title>
+    <link href="~/App_Start/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/Online_Assessment/QuestionScript.js"></script>
+</head>
+<body style="background-color: #dededc;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 bg-white rounded">
+                <form id="Question_form" name="Question_form" class="mt-5 mb-5">
+                    <div class="form-group">
+                        <label>Subject</label>
+                        @Html.DropDownList("Subject_Id", ViewBag.Subject_list as SelectList, new { @class = "form-control-sm" })
+                        <label>Difficulty level</label>
+                        @Html.DropDownList("Difficulty_Id", ViewBag.Difficulty_list as SelectList, new { @class = "form-control-sm" })
+                    </div>
+                    <br />
+                    <br />
+                    <label>Question</label>
+                    <br />
+                    <input type="text" id="Question" name="Question" class="form-control" />
+                    <br />
+                    <br />
+                    <label>Option1</label>
+                    <input type="text" id="Option1" name="Option1" class="form-control-sm" />
+                    <input type="checkbox" id="checkbox1" name="checkbox1" value="false" /><br />
+                    <label>Option2</label>
+                    <input type="text" id="Option2" name="Option2" class="form-control-sm" />
+                    <input type="checkbox" id="checkbox2" name="checkbox2" value="false" /><br />
+                    <label>Option3</label>
+                    <input type="text" id="Option3" name="Option3" class="form-control-sm" />
+                    <input type="checkbox" id="checkbox3" name="checkbox3" value="false" /><br />
+                    <label>Option4</label>
+                    <input type="text" id="Option4" name="Option4" class="form-control-sm" />
+                    <input type="checkbox" id="checkbox4" name="checkbox4" value="false" /><br />
+                    <br />
+                    <br />
+                    <button type="button" onclick="Add_question()" class="btn btn-success rounded">Add</button>
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</body>
+</html>

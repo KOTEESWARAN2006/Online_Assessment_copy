@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Instructions</title>
+    <link href="~/App_Start/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/Online_Assessment/Start_script.js"></script>
+</head>
+<body class="bg-secondary">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 rounded-5 bg-white">
+                <div class="container mt-5">
+                    <h3>Read all instructions carefully...</h3>
+                </div>
+                <br />
+                <input type="hidden" id="test_id" name="test_id" value="@ViewData["Test_Id"]" />
+                <input type="hidden" id="user_id" name="user_id" value="@Session["user_id"]" />
+                <p>1.<b>Answer all questions</b> If you are unsure about an answer, make your best guess and move on.</p>
+                <p>2.<b>Mark only one answer</b> per question, unless instructed otherwise. If you choose more than one answer, it will be considered incorrect.</p>
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-2">
+                        <button id="startbutton" class="btn btn-primary rounded-2 mb-3">Start</button>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+</body>
+</html>

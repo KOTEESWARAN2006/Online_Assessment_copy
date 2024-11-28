@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Online_AssessmentModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Online_AssessmentModelStoreContainer">
+          <EntitySet Name="Admin_table" EntityType="Online_AssessmentModel.Store.Admin_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Answer_table" EntityType="Online_AssessmentModel.Store.Answer_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Difficulty_table" EntityType="Online_AssessmentModel.Store.Difficulty_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Option_table" EntityType="Online_AssessmentModel.Store.Option_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question_mapping_table" EntityType="Online_AssessmentModel.Store.Question_mapping_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question_table" EntityType="Online_AssessmentModel.Store.Question_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subject_table" EntityType="Online_AssessmentModel.Store.Subject_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Test_invitation_table" EntityType="Online_AssessmentModel.Store.Test_invitation_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Test_table" EntityType="Online_AssessmentModel.Store.Test_table" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User_table" EntityType="Online_AssessmentModel.Store.User_table" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__Answer_ta__Optio__3C69FB99" Association="Online_AssessmentModel.Store.FK__Answer_ta__Optio__3C69FB99">
+            <End Role="Option_table" EntitySet="Option_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__Quest__3B75D760" Association="Online_AssessmentModel.Store.FK__Answer_ta__Quest__3B75D760">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__Test___398D8EEE" Association="Online_AssessmentModel.Store.FK__Answer_ta__Test___398D8EEE">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__User___3A81B327" Association="Online_AssessmentModel.Store.FK__Answer_ta__User___3A81B327">
+            <End Role="User_table" EntitySet="User_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Option_ta__Quest__21B6055D" Association="Online_AssessmentModel.Store.FK__Option_ta__Quest__21B6055D">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Option_table" EntitySet="Option_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Diffi__1CF15040" Association="Online_AssessmentModel.Store.FK__Question___Diffi__1CF15040">
+            <End Role="Difficulty_table" EntitySet="Difficulty_table" />
+            <End Role="Question_table" EntitySet="Question_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Quest__2E1BDC42" Association="Online_AssessmentModel.Store.FK__Question___Quest__2E1BDC42">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Subje__1BFD2C07" Association="Online_AssessmentModel.Store.FK__Question___Subje__1BFD2C07">
+            <End Role="Subject_table" EntitySet="Subject_table" />
+            <End Role="Question_table" EntitySet="Question_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Test___2D27B809" Association="Online_AssessmentModel.Store.FK__Question___Test___2D27B809">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test_invi__Test___33D4B598" Association="Online_AssessmentModel.Store.FK__Test_invi__Test___33D4B598">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Test_invitation_table" EntitySet="Test_invitation_table" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Admin_table">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Answer_table">
+          <Key>
+            <PropertyRef Name="Answer_Id" />
+          </Key>
+          <Property Name="Answer_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Question_Id" Type="int" Nullable="false" />
+          <Property Name="Option_Id" Type="int" Nullable="false" />
+          <Property Name="Submit_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Difficulty_table">
+          <Key>
+            <PropertyRef Name="Difficulty_Id" />
+          </Key>
+          <Property Name="Difficulty_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Difficulty_level" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Option_table">
+          <Key>
+            <PropertyRef Name="Option_Id" />
+          </Key>
+          <Property Name="Option_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Question_Id" Type="int" Nullable="false" />
+          <Property Name="Options" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Answer" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question_mapping_table">
+          <Key>
+            <PropertyRef Name="Question_map_id" />
+          </Key>
+          <Property Name="Question_map_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="int" Nullable="false" />
+          <Property Name="Question_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question_table">
+          <Key>
+            <PropertyRef Name="Question_Id" />
+          </Key>
+          <Property Name="Question_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_id" Type="int" Nullable="false" />
+          <Property Name="Questions" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Difficulty_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subject_table">
+          <Key>
+            <PropertyRef Name="Subject_Id" />
+          </Key>
+          <Property Name="Subject_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_name" Type="varchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Test_invitation_table">
+          <Key>
+            <PropertyRef Name="Invitation_Id" />
+          </Key>
+          <Property Name="Invitation_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="int" Nullable="false" />
+          <Property Name="User_email" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Invited_date" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Result" Type="int" />
+        </EntityType>
+        <EntityType Name="Test_table">
+          <Key>
+            <PropertyRef Name="Test_Id" />
+          </Key>
+          <Property Name="Test_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Test_name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Created_date" Type="datetime" Nullable="false" />
+          <Property Name="Start_date" Type="datetime" Nullable="false" />
+          <Property Name="End_date" Type="datetime" Nullable="false" />
+          <Property Name="Duration" Type="time" Precision="0" />
+        </EntityType>
+        <EntityType Name="User_table">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Last_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Answer_ta__Optio__3C69FB99">
+          <End Role="Option_table" Type="Online_AssessmentModel.Store.Option_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_table">
+              <PropertyRef Name="Option_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Option_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__Quest__3B75D760">
+          <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__Test___398D8EEE">
+          <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__User___3A81B327">
+          <End Role="User_table" Type="Online_AssessmentModel.Store.User_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_table">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Option_ta__Quest__21B6055D">
+          <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+          <End Role="Option_table" Type="Online_AssessmentModel.Store.Option_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Option_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Diffi__1CF15040">
+          <End Role="Difficulty_table" Type="Online_AssessmentModel.Store.Difficulty_table" Multiplicity="1" />
+          <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Difficulty_table">
+              <PropertyRef Name="Difficulty_Id" />
+            </Principal>
+            <Dependent Role="Question_table">
+              <PropertyRef Name="Difficulty_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Quest__2E1BDC42">
+          <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+          <End Role="Question_mapping_table" Type="Online_AssessmentModel.Store.Question_mapping_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Question_mapping_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Subje__1BFD2C07">
+          <End Role="Subject_table" Type="Online_AssessmentModel.Store.Subject_table" Multiplicity="1" />
+          <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_table">
+              <PropertyRef Name="Subject_Id" />
+            </Principal>
+            <Dependent Role="Question_table">
+              <PropertyRef Name="Subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Test___2D27B809">
+          <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+          <End Role="Question_mapping_table" Type="Online_AssessmentModel.Store.Question_mapping_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Question_mapping_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test_invi__Test___33D4B598">
+          <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+          <End Role="Test_invitation_table" Type="Online_AssessmentModel.Store.Test_invitation_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Test_invitation_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Delete_existing_questionIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Find_email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Find_exist_testid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_invited_testlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Get_invited_users_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_mapped_questionIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_only_questionids" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_questions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Subject_id" Type="int" Mode="In" />
+          <Parameter Name="Difficulty_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Get_result_for_admin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="test_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="get_result_for_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="test_id" Type="int" Mode="In" />
+          <Parameter Name="user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Options_for_livetest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="question_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Questions_for_livetest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="question_id" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Online_AssessmentModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Online_AssessmentEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin_table" EntityType="Online_AssessmentModel.Admin_table" />
+          <EntitySet Name="Answer_table" EntityType="Online_AssessmentModel.Answer_table" />
+          <EntitySet Name="Difficulty_table" EntityType="Online_AssessmentModel.Difficulty_table" />
+          <EntitySet Name="Option_table" EntityType="Online_AssessmentModel.Option_table" />
+          <EntitySet Name="Question_mapping_table" EntityType="Online_AssessmentModel.Question_mapping_table" />
+          <EntitySet Name="Question_table" EntityType="Online_AssessmentModel.Question_table" />
+          <EntitySet Name="Subject_table" EntityType="Online_AssessmentModel.Subject_table" />
+          <EntitySet Name="Test_invitation_table" EntityType="Online_AssessmentModel.Test_invitation_table" />
+          <EntitySet Name="Test_table" EntityType="Online_AssessmentModel.Test_table" />
+          <EntitySet Name="User_table" EntityType="Online_AssessmentModel.User_table" />
+          <AssociationSet Name="FK__Answer_ta__Optio__3C69FB99" Association="Online_AssessmentModel.FK__Answer_ta__Optio__3C69FB99">
+            <End Role="Option_table" EntitySet="Option_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__Quest__3B75D760" Association="Online_AssessmentModel.FK__Answer_ta__Quest__3B75D760">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__Test___398D8EEE" Association="Online_AssessmentModel.FK__Answer_ta__Test___398D8EEE">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Answer_ta__User___3A81B327" Association="Online_AssessmentModel.FK__Answer_ta__User___3A81B327">
+            <End Role="User_table" EntitySet="User_table" />
+            <End Role="Answer_table" EntitySet="Answer_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Diffi__1CF15040" Association="Online_AssessmentModel.FK__Question___Diffi__1CF15040">
+            <End Role="Difficulty_table" EntitySet="Difficulty_table" />
+            <End Role="Question_table" EntitySet="Question_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Option_ta__Quest__21B6055D" Association="Online_AssessmentModel.FK__Option_ta__Quest__21B6055D">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Option_table" EntitySet="Option_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Quest__2E1BDC42" Association="Online_AssessmentModel.FK__Question___Quest__2E1BDC42">
+            <End Role="Question_table" EntitySet="Question_table" />
+            <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Test___2D27B809" Association="Online_AssessmentModel.FK__Question___Test___2D27B809">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Question___Subje__1BFD2C07" Association="Online_AssessmentModel.FK__Question___Subje__1BFD2C07">
+            <End Role="Subject_table" EntitySet="Subject_table" />
+            <End Role="Question_table" EntitySet="Question_table" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Test_invi__Test___33D4B598" Association="Online_AssessmentModel.FK__Test_invi__Test___33D4B598">
+            <End Role="Test_table" EntitySet="Test_table" />
+            <End Role="Test_invitation_table" EntitySet="Test_invitation_table" />
+          </AssociationSet>
+          <FunctionImport Name="Get_questions" ReturnType="Collection(Online_AssessmentModel.Get_questions_Result)">
+            <Parameter Name="Subject_id" Mode="In" Type="Int32" />
+            <Parameter Name="Difficulty_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Find_exist_testid" ReturnType="Collection(Int32)">
+          <Parameter Name="test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_mapped_questionIds" ReturnType="Collection(Int32)">
+          <Parameter Name="test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_existing_questionIds">
+          <Parameter Name="test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Find_email" ReturnType="Collection(Int32)">
+          <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_invited_testlist" ReturnType="Collection(Online_AssessmentModel.Get_invited_testlist_Result)">
+          <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Get_invited_users_list" ReturnType="Collection(Online_AssessmentModel.Get_invited_users_list_Result)">
+          <Parameter Name="Test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Options_for_livetest" ReturnType="Collection(Online_AssessmentModel.Options_for_livetest_Result)">
+          <Parameter Name="question_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Questions_for_livetest" ReturnType="Collection(Online_AssessmentModel.Questions_for_livetest_Result)">
+          <Parameter Name="question_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_only_questionids" ReturnType="Collection(Int32)">
+          <Parameter Name="Test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Get_result_for_admin" ReturnType="Collection(Online_AssessmentModel.Get_result_for_admin_Result)">
+          <Parameter Name="test_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="get_result_for_user" ReturnType="Collection(Decimal)">
+            <Parameter Name="test_id" Mode="In" Type="Int32" />
+            <Parameter Name="user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Admin_table">
+          <Key>
+            <PropertyRef Name="Admin_Id" />
+          </Key>
+          <Property Name="Admin_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Admin_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Answer_table">
+          <Key>
+            <PropertyRef Name="Answer_Id" />
+          </Key>
+          <Property Name="Answer_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="Int32" Nullable="false" />
+          <Property Name="User_Id" Type="Int32" Nullable="false" />
+          <Property Name="Question_Id" Type="Int32" Nullable="false" />
+          <Property Name="Option_Id" Type="Int32" Nullable="false" />
+          <Property Name="Submit_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Option_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Optio__3C69FB99" FromRole="Answer_table" ToRole="Option_table" />
+          <NavigationProperty Name="Question_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Quest__3B75D760" FromRole="Answer_table" ToRole="Question_table" />
+          <NavigationProperty Name="Test_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Test___398D8EEE" FromRole="Answer_table" ToRole="Test_table" />
+          <NavigationProperty Name="User_table" Relationship="Online_AssessmentModel.FK__Answer_ta__User___3A81B327" FromRole="Answer_table" ToRole="User_table" />
+        </EntityType>
+        <EntityType Name="Difficulty_table">
+          <Key>
+            <PropertyRef Name="Difficulty_Id" />
+          </Key>
+          <Property Name="Difficulty_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Difficulty_level" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Question_table" Relationship="Online_AssessmentModel.FK__Question___Diffi__1CF15040" FromRole="Difficulty_table" ToRole="Question_table" />
+        </EntityType>
+        <EntityType Name="Option_table">
+          <Key>
+            <PropertyRef Name="Option_Id" />
+          </Key>
+          <Property Name="Option_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_Id" Type="Int32" Nullable="false" />
+          <Property Name="Options" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Answer" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Answer_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Optio__3C69FB99" FromRole="Option_table" ToRole="Answer_table" />
+          <NavigationProperty Name="Question_table" Relationship="Online_AssessmentModel.FK__Option_ta__Quest__21B6055D" FromRole="Option_table" ToRole="Question_table" />
+        </EntityType>
+        <EntityType Name="Question_mapping_table">
+          <Key>
+            <PropertyRef Name="Question_map_id" />
+          </Key>
+          <Property Name="Question_map_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="Int32" Nullable="false" />
+          <Property Name="Question_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Question_table" Relationship="Online_AssessmentModel.FK__Question___Quest__2E1BDC42" FromRole="Question_mapping_table" ToRole="Question_table" />
+          <NavigationProperty Name="Test_table" Relationship="Online_AssessmentModel.FK__Question___Test___2D27B809" FromRole="Question_mapping_table" ToRole="Test_table" />
+        </EntityType>
+        <EntityType Name="Question_table">
+          <Key>
+            <PropertyRef Name="Question_Id" />
+          </Key>
+          <Property Name="Question_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_id" Type="Int32" Nullable="false" />
+          <Property Name="Questions" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Difficulty_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Quest__3B75D760" FromRole="Question_table" ToRole="Answer_table" />
+          <NavigationProperty Name="Difficulty_table" Relationship="Online_AssessmentModel.FK__Question___Diffi__1CF15040" FromRole="Question_table" ToRole="Difficulty_table" />
+          <NavigationProperty Name="Option_table" Relationship="Online_AssessmentModel.FK__Option_ta__Quest__21B6055D" FromRole="Question_table" ToRole="Option_table" />
+          <NavigationProperty Name="Question_mapping_table" Relationship="Online_AssessmentModel.FK__Question___Quest__2E1BDC42" FromRole="Question_table" ToRole="Question_mapping_table" />
+          <NavigationProperty Name="Subject_table" Relationship="Online_AssessmentModel.FK__Question___Subje__1BFD2C07" FromRole="Question_table" ToRole="Subject_table" />
+        </EntityType>
+        <EntityType Name="Subject_table">
+          <Key>
+            <PropertyRef Name="Subject_Id" />
+          </Key>
+          <Property Name="Subject_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Subject_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Question_table" Relationship="Online_AssessmentModel.FK__Question___Subje__1BFD2C07" FromRole="Subject_table" ToRole="Question_table" />
+        </EntityType>
+        <EntityType Name="Test_invitation_table">
+          <Key>
+            <PropertyRef Name="Invitation_Id" />
+          </Key>
+          <Property Name="Invitation_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Test_Id" Type="Int32" Nullable="false" />
+          <Property Name="User_email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+          <Property Name="Invited_date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Test_table" Relationship="Online_AssessmentModel.FK__Test_invi__Test___33D4B598" FromRole="Test_invitation_table" ToRole="Test_table" />
+          <Property Type="Boolean" Name="Status" />
+          <Property Type="Int32" Name="Result" />
+        </EntityType>
+        <EntityType Name="Test_table">
+          <Key>
+            <PropertyRef Name="Test_Id" />
+          </Key>
+          <Property Name="Test_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Test_name" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Created_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="End_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Duration" Type="Time" Precision="0" />
+          <NavigationProperty Name="Answer_table" Relationship="Online_AssessmentModel.FK__Answer_ta__Test___398D8EEE" FromRole="Test_table" ToRole="Answer_table" />
+          <NavigationProperty Name="Question_mapping_table" Relationship="Online_AssessmentModel.FK__Question___Test___2D27B809" FromRole="Test_table" ToRole="Question_mapping_table" />
+          <NavigationProperty Name="Test_invitation_table" Relationship="Online_AssessmentModel.FK__Test_invi__Test___33D4B598" FromRole="Test_table" ToRole="Test_invitation_table" />
+        </EntityType>
+        <EntityType Name="User_table">
+          <Key>
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="User_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Answer_table" Relationship="Online_AssessmentModel.FK__Answer_ta__User___3A81B327" FromRole="User_table" ToRole="Answer_table" />
+        </EntityType>
+        <Association Name="FK__Answer_ta__Optio__3C69FB99">
+          <End Role="Option_table" Type="Online_AssessmentModel.Option_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Option_table">
+              <PropertyRef Name="Option_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Option_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__Quest__3B75D760">
+          <End Role="Question_table" Type="Online_AssessmentModel.Question_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__Test___398D8EEE">
+          <End Role="Test_table" Type="Online_AssessmentModel.Test_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Answer_ta__User___3A81B327">
+          <End Role="User_table" Type="Online_AssessmentModel.User_table" Multiplicity="1" />
+          <End Role="Answer_table" Type="Online_AssessmentModel.Answer_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_table">
+              <PropertyRef Name="User_Id" />
+            </Principal>
+            <Dependent Role="Answer_table">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Diffi__1CF15040">
+          <End Role="Difficulty_table" Type="Online_AssessmentModel.Difficulty_table" Multiplicity="1" />
+          <End Role="Question_table" Type="Online_AssessmentModel.Question_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Difficulty_table">
+              <PropertyRef Name="Difficulty_Id" />
+            </Principal>
+            <Dependent Role="Question_table">
+              <PropertyRef Name="Difficulty_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Option_ta__Quest__21B6055D">
+          <End Role="Question_table" Type="Online_AssessmentModel.Question_table" Multiplicity="1" />
+          <End Role="Option_table" Type="Online_AssessmentModel.Option_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Option_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Quest__2E1BDC42">
+          <End Role="Question_table" Type="Online_AssessmentModel.Question_table" Multiplicity="1" />
+          <End Role="Question_mapping_table" Type="Online_AssessmentModel.Question_mapping_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question_table">
+              <PropertyRef Name="Question_Id" />
+            </Principal>
+            <Dependent Role="Question_mapping_table">
+              <PropertyRef Name="Question_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Test___2D27B809">
+          <End Role="Test_table" Type="Online_AssessmentModel.Test_table" Multiplicity="1" />
+          <End Role="Question_mapping_table" Type="Online_AssessmentModel.Question_mapping_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Question_mapping_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Question___Subje__1BFD2C07">
+          <End Role="Subject_table" Type="Online_AssessmentModel.Subject_table" Multiplicity="1" />
+          <End Role="Question_table" Type="Online_AssessmentModel.Question_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject_table">
+              <PropertyRef Name="Subject_Id" />
+            </Principal>
+            <Dependent Role="Question_table">
+              <PropertyRef Name="Subject_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Test_invi__Test___33D4B598">
+          <End Role="Test_table" Type="Online_AssessmentModel.Test_table" Multiplicity="1" />
+          <End Role="Test_invitation_table" Type="Online_AssessmentModel.Test_invitation_table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_table">
+              <PropertyRef Name="Test_Id" />
+            </Principal>
+            <Dependent Role="Test_invitation_table">
+              <PropertyRef Name="Test_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Get_questions_Result">
+          <Property Type="Int32" Name="question_id" Nullable="false" />
+          <Property Type="String" Name="Questions" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Subject_name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Difficulty_level" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Get_invited_testlist_Result">
+          <Property Type="Int32" Name="Test_Id" Nullable="false" />
+          <Property Type="String" Name="Test_name" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="Start_date" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="End_date" Nullable="false" Precision="23" />
+          <Property Type="Time" Name="Duration" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Get_invited_users_list_Result">
+          <Property Type="Int32" Name="Invitation_Id" Nullable="false" />
+          <Property Type="Int32" Name="Test_Id" Nullable="false" />
+          <Property Type="String" Name="User_email" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Invited_date" Nullable="false" Precision="23" />
+          <Property Type="Boolean" Name="Status" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Options_for_livetest_Result">
+          <Property Type="Int32" Name="Option_Id" Nullable="false" />
+          <Property Type="String" Name="Options" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="Questions_for_livetest_Result">
+          <Property Type="Int32" Name="Question_Id" Nullable="false" />
+          <Property Type="String" Name="questions" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="Get_result_for_admin_Result">
+          <Property Type="Int32" Name="User_id" Nullable="false" />
+          <Property Type="String" Name="User_name" Nullable="false" MaxLength="201" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="Result" Nullable="true" Precision="26" Scale="12" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Online_AssessmentModelStoreContainer" CdmEntityContainer="Online_AssessmentEntities">
+          <EntitySetMapping Name="Admin_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Admin_table">
+              <MappingFragment StoreEntitySet="Admin_table">
+                <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+                <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answer_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Answer_table">
+              <MappingFragment StoreEntitySet="Answer_table">
+                <ScalarProperty Name="Answer_Id" ColumnName="Answer_Id" />
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+                <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Difficulty_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Difficulty_table">
+              <MappingFragment StoreEntitySet="Difficulty_table">
+                <ScalarProperty Name="Difficulty_Id" ColumnName="Difficulty_Id" />
+                <ScalarProperty Name="Difficulty_level" ColumnName="Difficulty_level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Option_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Option_table">
+              <MappingFragment StoreEntitySet="Option_table">
+                <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="Options" ColumnName="Options" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_mapping_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Question_mapping_table">
+              <MappingFragment StoreEntitySet="Question_mapping_table">
+                <ScalarProperty Name="Question_map_id" ColumnName="Question_map_id" />
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Question_table">
+              <MappingFragment StoreEntitySet="Question_table">
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="Difficulty_Id" ColumnName="Difficulty_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subject_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Subject_table">
+              <MappingFragment StoreEntitySet="Subject_table">
+                <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+                <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_invitation_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Test_invitation_table">
+              <MappingFragment StoreEntitySet="Test_invitation_table">
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Invitation_Id" ColumnName="Invitation_Id" />
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="User_email" ColumnName="User_email" />
+                <ScalarProperty Name="Invited_date" ColumnName="Invited_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.Test_table">
+              <MappingFragment StoreEntitySet="Test_table">
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="Test_name" ColumnName="Test_name" />
+                <ScalarProperty Name="Created_date" ColumnName="Created_date" />
+                <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+                <ScalarProperty Name="End_date" ColumnName="End_date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_table">
+            <EntityTypeMapping TypeName="Online_AssessmentModel.User_table">
+              <MappingFragment StoreEntitySet="User_table">
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Get_questions" FunctionName="Online_AssessmentModel.Store.Get_questions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_questions_Result">
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+                <ScalarProperty Name="Difficulty_level" ColumnName="Difficulty_level" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Find_exist_testid" FunctionName="Online_AssessmentModel.Store.Find_exist_testid" />
+          <FunctionImportMapping FunctionImportName="Get_mapped_questionIds" FunctionName="Online_AssessmentModel.Store.Get_mapped_questionIds" />
+          <FunctionImportMapping FunctionImportName="Delete_existing_questionIds" FunctionName="Online_AssessmentModel.Store.Delete_existing_questionIds" />
+          <FunctionImportMapping FunctionImportName="Find_email" FunctionName="Online_AssessmentModel.Store.Find_email" />
+          <FunctionImportMapping FunctionImportName="Get_invited_testlist" FunctionName="Online_AssessmentModel.Store.Get_invited_testlist">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_invited_testlist_Result">
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="Test_name" ColumnName="Test_name" />
+                <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+                <ScalarProperty Name="End_date" ColumnName="End_date" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_invited_users_list" FunctionName="Online_AssessmentModel.Store.Get_invited_users_list">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_invited_users_list_Result">
+                <ScalarProperty Name="Invitation_Id" ColumnName="Invitation_Id" />
+                <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+                <ScalarProperty Name="User_email" ColumnName="User_email" />
+                <ScalarProperty Name="Invited_date" ColumnName="Invited_date" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Options_for_livetest" FunctionName="Online_AssessmentModel.Store.Options_for_livetest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Options_for_livetest_Result">
+                <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+                <ScalarProperty Name="Options" ColumnName="Options" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Questions_for_livetest" FunctionName="Online_AssessmentModel.Store.Questions_for_livetest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Questions_for_livetest_Result">
+                <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+                <ScalarProperty Name="questions" ColumnName="questions" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Get_only_questionids" FunctionName="Online_AssessmentModel.Store.Get_only_questionids" />
+          <FunctionImportMapping FunctionImportName="Get_result_for_admin" FunctionName="Online_AssessmentModel.Store.Get_result_for_admin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_result_for_admin_Result">
+                <ScalarProperty Name="User_id" ColumnName="User_id" />
+                <ScalarProperty Name="User_name" ColumnName="User_name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="get_result_for_user" FunctionName="Online_AssessmentModel.Store.get_result_for_user" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

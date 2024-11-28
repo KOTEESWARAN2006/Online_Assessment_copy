@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Question map page</title>
+    <link href="~/App_Start/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <link href="~/App_Start/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="~/Scripts/Online_Assessment/Question_map_script.js"></script>
+</head>
+<body>
+    <div class="row mt-5">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <form>
+                <input type="hidden" id="Test_Id" name="Test_Id" value="@ViewBag.Id"/>
+                <div class="form-group">
+                    <label>Subject</label>
+                    @Html.DropDownList("Subject_Id", ViewBag.Subject_list as SelectList, new { @class = "form-control-sm" })
+                    <label>Difficulty level</label>
+                    @Html.DropDownList("Difficulty_Id", ViewBag.Difficulty_list as SelectList, new { @class = "form-control-sm" })
+                    <button type="button" onclick="Get_questions()" class="btn btn-primary rounded">Get Questions</button>
+                </div>
+                <br />
+                <button type="button" onclick="Map_questions()" class="btn btn-success rounded">Add Questions to this test</button>
+                <input type="text" id="searchbox" name="searchbox" placeholder="Search subject" />
+                <br />
+                <br />
+                <table id="Question_table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Select</td>
+                            <td>Question_Id</td>
+                            <td>Questions</td>
+                            <td>Subject</td>
+                            <td>Difficulty level</td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </form>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</body>
+</html>

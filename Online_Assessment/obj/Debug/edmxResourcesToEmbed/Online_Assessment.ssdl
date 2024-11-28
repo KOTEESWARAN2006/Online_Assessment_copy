@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Online_AssessmentModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Online_AssessmentModelStoreContainer">
+    <EntitySet Name="Admin_table" EntityType="Online_AssessmentModel.Store.Admin_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Answer_table" EntityType="Online_AssessmentModel.Store.Answer_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Difficulty_table" EntityType="Online_AssessmentModel.Store.Difficulty_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Option_table" EntityType="Online_AssessmentModel.Store.Option_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Question_mapping_table" EntityType="Online_AssessmentModel.Store.Question_mapping_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Question_table" EntityType="Online_AssessmentModel.Store.Question_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subject_table" EntityType="Online_AssessmentModel.Store.Subject_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Test_invitation_table" EntityType="Online_AssessmentModel.Store.Test_invitation_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Test_table" EntityType="Online_AssessmentModel.Store.Test_table" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User_table" EntityType="Online_AssessmentModel.Store.User_table" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Answer_ta__Optio__3C69FB99" Association="Online_AssessmentModel.Store.FK__Answer_ta__Optio__3C69FB99">
+      <End Role="Option_table" EntitySet="Option_table" />
+      <End Role="Answer_table" EntitySet="Answer_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Answer_ta__Quest__3B75D760" Association="Online_AssessmentModel.Store.FK__Answer_ta__Quest__3B75D760">
+      <End Role="Question_table" EntitySet="Question_table" />
+      <End Role="Answer_table" EntitySet="Answer_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Answer_ta__Test___398D8EEE" Association="Online_AssessmentModel.Store.FK__Answer_ta__Test___398D8EEE">
+      <End Role="Test_table" EntitySet="Test_table" />
+      <End Role="Answer_table" EntitySet="Answer_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Answer_ta__User___3A81B327" Association="Online_AssessmentModel.Store.FK__Answer_ta__User___3A81B327">
+      <End Role="User_table" EntitySet="User_table" />
+      <End Role="Answer_table" EntitySet="Answer_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Option_ta__Quest__21B6055D" Association="Online_AssessmentModel.Store.FK__Option_ta__Quest__21B6055D">
+      <End Role="Question_table" EntitySet="Question_table" />
+      <End Role="Option_table" EntitySet="Option_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question___Diffi__1CF15040" Association="Online_AssessmentModel.Store.FK__Question___Diffi__1CF15040">
+      <End Role="Difficulty_table" EntitySet="Difficulty_table" />
+      <End Role="Question_table" EntitySet="Question_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question___Quest__2E1BDC42" Association="Online_AssessmentModel.Store.FK__Question___Quest__2E1BDC42">
+      <End Role="Question_table" EntitySet="Question_table" />
+      <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question___Subje__1BFD2C07" Association="Online_AssessmentModel.Store.FK__Question___Subje__1BFD2C07">
+      <End Role="Subject_table" EntitySet="Subject_table" />
+      <End Role="Question_table" EntitySet="Question_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question___Test___2D27B809" Association="Online_AssessmentModel.Store.FK__Question___Test___2D27B809">
+      <End Role="Test_table" EntitySet="Test_table" />
+      <End Role="Question_mapping_table" EntitySet="Question_mapping_table" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Test_invi__Test___33D4B598" Association="Online_AssessmentModel.Store.FK__Test_invi__Test___33D4B598">
+      <End Role="Test_table" EntitySet="Test_table" />
+      <End Role="Test_invitation_table" EntitySet="Test_invitation_table" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admin_table">
+    <Key>
+      <PropertyRef Name="Admin_Id" />
+    </Key>
+    <Property Name="Admin_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Admin_name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Answer_table">
+    <Key>
+      <PropertyRef Name="Answer_Id" />
+    </Key>
+    <Property Name="Answer_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Test_Id" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="Question_Id" Type="int" Nullable="false" />
+    <Property Name="Option_Id" Type="int" Nullable="false" />
+    <Property Name="Submit_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Difficulty_table">
+    <Key>
+      <PropertyRef Name="Difficulty_Id" />
+    </Key>
+    <Property Name="Difficulty_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Difficulty_level" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Option_table">
+    <Key>
+      <PropertyRef Name="Option_Id" />
+    </Key>
+    <Property Name="Option_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Question_Id" Type="int" Nullable="false" />
+    <Property Name="Options" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Answer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question_mapping_table">
+    <Key>
+      <PropertyRef Name="Question_map_id" />
+    </Key>
+    <Property Name="Question_map_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Test_Id" Type="int" Nullable="false" />
+    <Property Name="Question_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question_table">
+    <Key>
+      <PropertyRef Name="Question_Id" />
+    </Key>
+    <Property Name="Question_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Subject_id" Type="int" Nullable="false" />
+    <Property Name="Questions" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Difficulty_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subject_table">
+    <Key>
+      <PropertyRef Name="Subject_Id" />
+    </Key>
+    <Property Name="Subject_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Subject_name" Type="varchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Test_invitation_table">
+    <Key>
+      <PropertyRef Name="Invitation_Id" />
+    </Key>
+    <Property Name="Invitation_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Test_Id" Type="int" Nullable="false" />
+    <Property Name="User_email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Invited_date" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="Result" Type="int" />
+  </EntityType>
+  <EntityType Name="Test_table">
+    <Key>
+      <PropertyRef Name="Test_Id" />
+    </Key>
+    <Property Name="Test_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Test_name" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Created_date" Type="datetime" Nullable="false" />
+    <Property Name="Start_date" Type="datetime" Nullable="false" />
+    <Property Name="End_date" Type="datetime" Nullable="false" />
+    <Property Name="Duration" Type="time" Precision="0" />
+  </EntityType>
+  <EntityType Name="User_table">
+    <Key>
+      <PropertyRef Name="User_Id" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="First_name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Last_name" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Answer_ta__Optio__3C69FB99">
+    <End Role="Option_table" Type="Online_AssessmentModel.Store.Option_table" Multiplicity="1" />
+    <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Option_table">
+        <PropertyRef Name="Option_Id" />
+      </Principal>
+      <Dependent Role="Answer_table">
+        <PropertyRef Name="Option_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Answer_ta__Quest__3B75D760">
+    <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+    <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_table">
+        <PropertyRef Name="Question_Id" />
+      </Principal>
+      <Dependent Role="Answer_table">
+        <PropertyRef Name="Question_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Answer_ta__Test___398D8EEE">
+    <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+    <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test_table">
+        <PropertyRef Name="Test_Id" />
+      </Principal>
+      <Dependent Role="Answer_table">
+        <PropertyRef Name="Test_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Answer_ta__User___3A81B327">
+    <End Role="User_table" Type="Online_AssessmentModel.Store.User_table" Multiplicity="1" />
+    <End Role="Answer_table" Type="Online_AssessmentModel.Store.Answer_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_table">
+        <PropertyRef Name="User_Id" />
+      </Principal>
+      <Dependent Role="Answer_table">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Option_ta__Quest__21B6055D">
+    <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+    <End Role="Option_table" Type="Online_AssessmentModel.Store.Option_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_table">
+        <PropertyRef Name="Question_Id" />
+      </Principal>
+      <Dependent Role="Option_table">
+        <PropertyRef Name="Question_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question___Diffi__1CF15040">
+    <End Role="Difficulty_table" Type="Online_AssessmentModel.Store.Difficulty_table" Multiplicity="1" />
+    <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Difficulty_table">
+        <PropertyRef Name="Difficulty_Id" />
+      </Principal>
+      <Dependent Role="Question_table">
+        <PropertyRef Name="Difficulty_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question___Quest__2E1BDC42">
+    <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="1" />
+    <End Role="Question_mapping_table" Type="Online_AssessmentModel.Store.Question_mapping_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question_table">
+        <PropertyRef Name="Question_Id" />
+      </Principal>
+      <Dependent Role="Question_mapping_table">
+        <PropertyRef Name="Question_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question___Subje__1BFD2C07">
+    <End Role="Subject_table" Type="Online_AssessmentModel.Store.Subject_table" Multiplicity="1" />
+    <End Role="Question_table" Type="Online_AssessmentModel.Store.Question_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject_table">
+        <PropertyRef Name="Subject_Id" />
+      </Principal>
+      <Dependent Role="Question_table">
+        <PropertyRef Name="Subject_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question___Test___2D27B809">
+    <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+    <End Role="Question_mapping_table" Type="Online_AssessmentModel.Store.Question_mapping_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test_table">
+        <PropertyRef Name="Test_Id" />
+      </Principal>
+      <Dependent Role="Question_mapping_table">
+        <PropertyRef Name="Test_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Test_invi__Test___33D4B598">
+    <End Role="Test_table" Type="Online_AssessmentModel.Store.Test_table" Multiplicity="1" />
+    <End Role="Test_invitation_table" Type="Online_AssessmentModel.Store.Test_invitation_table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Test_table">
+        <PropertyRef Name="Test_Id" />
+      </Principal>
+      <Dependent Role="Test_invitation_table">
+        <PropertyRef Name="Test_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="Delete_existing_questionIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Find_email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Find_exist_testid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_invited_testlist" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="email" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Get_invited_users_list" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_mapped_questionIds" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_only_questionids" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_questions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Subject_id" Type="int" Mode="In" />
+    <Parameter Name="Difficulty_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Get_result_for_admin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="test_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="get_result_for_user" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="test_id" Type="int" Mode="In" />
+    <Parameter Name="user_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Options_for_livetest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="question_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Questions_for_livetest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="question_id" Type="int" Mode="In" />
+  </Function>
+</Schema>

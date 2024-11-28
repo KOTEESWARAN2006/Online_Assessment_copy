@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Online_AssessmentModelStoreContainer" CdmEntityContainer="Online_AssessmentEntities">
+    <EntitySetMapping Name="Admin_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Admin_table">
+        <MappingFragment StoreEntitySet="Admin_table">
+          <ScalarProperty Name="Admin_Id" ColumnName="Admin_Id" />
+          <ScalarProperty Name="Admin_name" ColumnName="Admin_name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answer_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Answer_table">
+        <MappingFragment StoreEntitySet="Answer_table">
+          <ScalarProperty Name="Answer_Id" ColumnName="Answer_Id" />
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+          <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+          <ScalarProperty Name="Submit_date" ColumnName="Submit_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Difficulty_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Difficulty_table">
+        <MappingFragment StoreEntitySet="Difficulty_table">
+          <ScalarProperty Name="Difficulty_Id" ColumnName="Difficulty_Id" />
+          <ScalarProperty Name="Difficulty_level" ColumnName="Difficulty_level" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Option_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Option_table">
+        <MappingFragment StoreEntitySet="Option_table">
+          <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+          <ScalarProperty Name="Options" ColumnName="Options" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question_mapping_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Question_mapping_table">
+        <MappingFragment StoreEntitySet="Question_mapping_table">
+          <ScalarProperty Name="Question_map_id" ColumnName="Question_map_id" />
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Question_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Question_table">
+        <MappingFragment StoreEntitySet="Question_table">
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+          <ScalarProperty Name="Subject_id" ColumnName="Subject_id" />
+          <ScalarProperty Name="Questions" ColumnName="Questions" />
+          <ScalarProperty Name="Difficulty_Id" ColumnName="Difficulty_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subject_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Subject_table">
+        <MappingFragment StoreEntitySet="Subject_table">
+          <ScalarProperty Name="Subject_Id" ColumnName="Subject_Id" />
+          <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test_invitation_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Test_invitation_table">
+        <MappingFragment StoreEntitySet="Test_invitation_table">
+          <ScalarProperty Name="Result" ColumnName="Result" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Invitation_Id" ColumnName="Invitation_Id" />
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="User_email" ColumnName="User_email" />
+          <ScalarProperty Name="Invited_date" ColumnName="Invited_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.Test_table">
+        <MappingFragment StoreEntitySet="Test_table">
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="Test_name" ColumnName="Test_name" />
+          <ScalarProperty Name="Created_date" ColumnName="Created_date" />
+          <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+          <ScalarProperty Name="End_date" ColumnName="End_date" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_table">
+      <EntityTypeMapping TypeName="Online_AssessmentModel.User_table">
+        <MappingFragment StoreEntitySet="User_table">
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Get_questions" FunctionName="Online_AssessmentModel.Store.Get_questions">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_questions_Result">
+          <ScalarProperty Name="question_id" ColumnName="question_id" />
+          <ScalarProperty Name="Questions" ColumnName="Questions" />
+          <ScalarProperty Name="Subject_name" ColumnName="Subject_name" />
+          <ScalarProperty Name="Difficulty_level" ColumnName="Difficulty_level" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Find_exist_testid" FunctionName="Online_AssessmentModel.Store.Find_exist_testid" />
+    <FunctionImportMapping FunctionImportName="Get_mapped_questionIds" FunctionName="Online_AssessmentModel.Store.Get_mapped_questionIds" />
+    <FunctionImportMapping FunctionImportName="Delete_existing_questionIds" FunctionName="Online_AssessmentModel.Store.Delete_existing_questionIds" />
+    <FunctionImportMapping FunctionImportName="Find_email" FunctionName="Online_AssessmentModel.Store.Find_email" />
+    <FunctionImportMapping FunctionImportName="Get_invited_testlist" FunctionName="Online_AssessmentModel.Store.Get_invited_testlist">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_invited_testlist_Result">
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="Test_name" ColumnName="Test_name" />
+          <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+          <ScalarProperty Name="End_date" ColumnName="End_date" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_invited_users_list" FunctionName="Online_AssessmentModel.Store.Get_invited_users_list">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_invited_users_list_Result">
+          <ScalarProperty Name="Invitation_Id" ColumnName="Invitation_Id" />
+          <ScalarProperty Name="Test_Id" ColumnName="Test_Id" />
+          <ScalarProperty Name="User_email" ColumnName="User_email" />
+          <ScalarProperty Name="Invited_date" ColumnName="Invited_date" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Options_for_livetest" FunctionName="Online_AssessmentModel.Store.Options_for_livetest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Options_for_livetest_Result">
+          <ScalarProperty Name="Option_Id" ColumnName="Option_Id" />
+          <ScalarProperty Name="Options" ColumnName="Options" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Questions_for_livetest" FunctionName="Online_AssessmentModel.Store.Questions_for_livetest">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Questions_for_livetest_Result">
+          <ScalarProperty Name="Question_Id" ColumnName="Question_Id" />
+          <ScalarProperty Name="questions" ColumnName="questions" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Get_only_questionids" FunctionName="Online_AssessmentModel.Store.Get_only_questionids" />
+    <FunctionImportMapping FunctionImportName="Get_result_for_admin" FunctionName="Online_AssessmentModel.Store.Get_result_for_admin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Online_AssessmentModel.Get_result_for_admin_Result">
+          <ScalarProperty Name="User_id" ColumnName="User_id" />
+          <ScalarProperty Name="User_name" ColumnName="User_name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Result" ColumnName="Result" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="get_result_for_user" FunctionName="Online_AssessmentModel.Store.get_result_for_user" />
+  </EntityContainerMapping>
+</Mapping>
